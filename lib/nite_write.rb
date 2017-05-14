@@ -1,8 +1,13 @@
-require 'pry'
+require './lib/file_read'
+require './lib/file_write'
 
 class NightWriter
 
+  attr_reader :file_reader, :file_writer
+
   def initialize
+    @file_writer = FileWriter.new
+    @file_reader = FileReader.new
     @top = {"abehkloruvz1258" => "0.",
             "cdfgmnpqxy3467" => "00",
             "ijstw#09" => ".0",
@@ -20,7 +25,6 @@ class NightWriter
   def top(input)
     braille = ""
     @output_first = ""
-    top_line = @top
      @top.each do |k, v|
       input.chars.map do |val|
         if k.include?(val)
@@ -36,7 +40,6 @@ class NightWriter
   def mid(input)
     braille = ""
     @output_first = ""
-    top_line = @mid
      @mid.each do |k, v|
       input.chars.map do |val|
         if k.include?(val)
@@ -46,13 +49,12 @@ class NightWriter
         end
       end
     end
-   @output_first
+    @output_first
   end
 
   def bottom(input)
     braille = ""
     @output_first = ""
-    top_line = @bottom
      @bottom.each do |k, v|
       input.chars.map do |val|
         if k.include?(val)
@@ -62,10 +64,25 @@ class NightWriter
         end
       end
     end
-   @output_first
+    @output_first
   end
 
+  def count(input)
+    input.chars.map |val|
+      val * 2
+      #hopefully this can iterate through for each line.
+      #going to need to be teaked tho im sure
+    end
+  end
+  # if __FILE__ == $0
+  nite = NightWriter.new
+  @text = nite.file_reader.read
+  nite.method(@text)
+
+  nite.file_writer.braille(nite.top, nite.mid, nite.bottom)
+  puts "Created #{ARGV[1]} containing #{nite.count} braille characters"
 end
+
 
 
   # def top_first(input)
