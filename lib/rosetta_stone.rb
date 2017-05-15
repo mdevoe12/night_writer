@@ -1,6 +1,8 @@
 require 'pry'
 
-class NightWriter
+#require_relative 'night_write'
+
+class RosettaStone
 
   def initialize
     @top = {"abehkloruvz1258" => "0.",
@@ -17,131 +19,81 @@ class NightWriter
               "abcdefghij,0123456789" => ".."}
   end
 
-  def top(input)
-    braille = ""
-    @output_first = ""
-    top_line = @top
-     @top.each do |k, v|
+  def trans_key(input)
+    @output = ""
+    @dict.each do |k, v|
       input.chars.map do |val|
         if k.include?(val)
         braille = val
         braille = braille.gsub(val, v)
-        @output_first = @output_first + braille
+        @output = @output + braille
         end
       end
     end
-   @output_first
+    @output
+  end
+
+  def top(input)
+    @dict = @top
+    trans_key(input)
   end
 
   def mid(input)
-    braille = ""
-    @output_first = ""
-    top_line = @mid
-     @mid.each do |k, v|
-      input.chars.map do |val|
-        if k.include?(val)
-        braille = val
-        braille = braille.gsub(val, v)
-        @output_first = @output_first + braille
-        end
-      end
-    end
-   @output_first
+    @dict = @mid
+    trans_key(input)
   end
 
   def bottom(input)
-    braille = ""
-    @output_first = ""
-    top_line = @bottom
-     @bottom.each do |k, v|
-      input.chars.map do |val|
-        if k.include?(val)
-        braille = val
-        braille = braille.gsub(val, v)
-        @output_first = @output_first + braille
-        end
-      end
-    end
-   @output_first
+    @dict = @bottom
+    trans_key(input)
   end
 
 end
 
-
-  # def top_first(input)
+  # def mid(input)
   #   braille = ""
   #   @output_first = ""
-  #   top_line = @top
-  #   input.chars.map do |val|
-  #     if top_line.keys[0].include?(val)
-  #     symbol = top_line.values[0]
-  #     braille = val
-  #     braille = braille.gsub(val, symbol)
-  #     @output_first = @output_first + braille
-  #     end
-  #   end
-  #  @output_first
-  # end
-  #
-  # def top_second(input)
-  #   braille = ""
-  #   @output_first = ""
-  #   top_line = @top
-  #   input.chars.map do |val|
-  #     if top_line.keys[1].include?(val)
-  #     symbol = top_line.values[1]
-  #     braille = val
-  #     braille = braille.gsub(val, symbol)
-  #     @output_first = @output_first + braille
-  #     end
-  #   end
-  #  @output_first
-  # end
-  #
-  # def top_third(input)
-  #   braille = ""
-  #   @output_first = ""
-  #   top_line = @top
-  #   input.chars.map do |val|
-  #     if top_line.keys[2].include?(val)
-  #     symbol = top_line.values[2]
-  #     braille = val
-  #     braille = braille.gsub(val, symbol)
-  #     @output_first = @output_first + braille
-  #     end
-  #   end
-  #  @output_first
-  # end
-  # def top(input)
-  #   top_var = ""
-  #   top_first(input)
-  #     top_var << @output_first
-  #   top_second(input)
-  #     top_var << @output_first
-  #   top_third(input)
-  #     top_var << @output_first
-  #   top_fourth(input)
-  #     top_var << @output_first
-  #   top_var
-  # end
-
-  # def key_enum(input)
-  #   braille = ""
-  #   @output_first = ""
-  #   top_line = @top
-  #   @top.each_key do |k|
+  #   top_line = @mid
+  #    @mid.each do |k, v|
   #     input.chars.map do |val|
-  #       if top_line.keys[k].include?(val)
-  #       symbol = top_line.values[k]
+  #       if k.include?(val)
   #       braille = val
-  #       braille = braille.gsub(val, symbol)
+  #       braille = braille.gsub(val, v)
   #       @output_first = @output_first + braille
   #       end
   #     end
   #   end
-  #   @output_first
+  #  @output_first
   # end
   #
-  # def top_fourth(input)
-  #   key_enum(input)
+  # def bottom(input)
+  #   braille = ""
+  #   @output_first = ""
+  #   top_line = @bottom
+  #    @bottom.each do |k, v|
+  #     input.chars.map do |val|
+  #       if k.include?(val)
+  #       braille = val
+  #       braille = braille.gsub(val, v)
+  #       @output_first = @output_first + braille
+  #       end
+  #     end
+  #   end
+  #  @output_first
   # end
+
+
+
+# From Top
+# braille = ""
+# @output_first = ""
+# top_line = @top
+#  @top.each do |k, v|
+#   input.chars.map do |val|
+#     if k.include?(val)
+#     braille = val
+#     braille = braille.gsub(val, v)
+#     @output_first = @output_first + braille
+#     end
+#   end
+# end
