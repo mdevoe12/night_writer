@@ -1,10 +1,21 @@
 require_relative 'rosetta_stone'
 
-class NightWriter
+class FileReader
 
-  handle = File.open(ARGV[0], "r")
 
-  incoming_text = "Hello World"
+
+  # handle = File.open(ARGV[0], "r")
+
+  # def initialize
+  #   @read = read
+  # end
+
+  def read
+    # filename = File.open(ARGV[0], "r")
+    # File.read(filename)
+    "hello world"
+  end
+
   # incoming_text = handle.read
 
 end
