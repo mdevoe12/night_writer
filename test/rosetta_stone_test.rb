@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/rosetta_stone'
 require_relative '../lib/file_writer'
+require_relative '../lib/file_reader'
 
 class RosettaStoneTest < Minitest::Test
 
@@ -29,42 +30,20 @@ class RosettaStoneTest < Minitest::Test
     assert_equal "0.00.0..", rosettastone.bottom("mywg")
   end
 
-  def test_if_incoming_test_works
+  def test_can_it_translate_caps
     rosettastone = RosettaStone.new
 
-    assert_equal "hello world", rosettastone.reader
+    assert_equal "..0.", rosettastone.top("A")
+    assert_equal "....", rosettastone.mid("A")
+    assert_equal "..00", rosettastone.bottom("W")
   end
 
   def test_if_read_helloworld_top
     rosettastone = RosettaStone.new
-    text = rosettastone.reader
+    text = "hello world"
 
-    assert_equal "0.0.0.0.0......00.0.0.00", rosettastone.top(text)
+    assert_equal "0.0.0.0.0....00.0.0.00", rosettastone.top(text)
   end
-
-  def test_if_read_helloworld_mid
-    rosettastone = RosettaStone.new
-    text = rosettastone.reader
-
-    assert_equal "0.0.0.0.0......00.0.0.00", rosettastone.mid(text)
-  end
-  #
-  # def test_if_read_helloworld_bottom
-  #   rosettastone = RosettaStone.new
-  #   text = rosettastone.reader.read
-  #
-  #   assert_equal "....0.0.0..00.0.0...", rosettastone.bottom(text)
-  # end
-  #
-  # def test_if_read_helloworld_all
-  #   rosettastone = RosettaStone.new
-  #   text = rosettastone.reader.read
-  #
-  #   assert_equal "0.0.0.0.0..00.0.0.00", rosettastone.top(text)
-  #   assert_equal "00.00.0..000.0000..0", rosettastone.mid(text)
-  #   assert_equal "....0.0.0..00.0.0...", rosettastone.bottom(text)
-  # end
-
 
 
 

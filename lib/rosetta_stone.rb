@@ -6,22 +6,38 @@ class RosettaStone
   attr_reader :reader
 
   def initialize
-   @reader = FileReader.new.read
 
-    @top = {"abehkloruvz1258" => "0.",
-            "cdfgmnpqxy3467" => "00",
-            "ijstw#09" => ".0",
-            "',-.?! " => "..",
-            " @" => ".."}
-    @mid = {"bfilpsv,?269" => "0.",
-            "ghjqrtw!." => "00",
-            "denoyz#45" => ".0",
-            "ackmux'- " => ".."}
-    @bottom = {"klmnopqrst!'" => "0.",
-              "uvxyz-?#" => "00",
-              "w." => ".0",
-              "abcdefghij,0123456789 " => ".."}
+   @reader = FileReader.new.reader
+
+
+   @top = {"abehkloruvz1258" => "0.",
+             "cdfgmnpqxy3467" => "00",
+             "ijstw#09" => ".0",
+             "',-.?! " => "..",
+             "ABEHKLORUVZ" => "..0.",
+             "CDFGMNPQXY" => "..00",
+             "IJSTW" => "...0"}
+     @mid = {"bfilpsv,?269" => "0.",
+             "ghjqrtw!." => "00",
+             "denoyz#45" => ".0",
+             "ackmux'- " => "..",
+             "BFILPSV" => "..0.",
+             "GHJQRTW" => "..00",
+             "DENOYZ" => "...0",
+             "ACKMUX" => "...."}
+     @bottom = {"klmnopqrst!'" => "0.",
+               "uvxyz-?#" => "00",
+               "w." => ".0",
+               "abcdefghij,0123456789 " => "..",
+               "KLMNOPQRST" => "..0.",
+               "UVWYZ" => "..00",
+               "ABCDEFGHIJ" => "...."}
   end
+
+  # def all_lines
+  #   @top_line.join + "\n" + @middle_line.join + "\n" + @bottom_line.join
+  # end
+
 
   def top(input)
     @dict = @top
@@ -38,8 +54,6 @@ class RosettaStone
     trans_key(input)
   end
 
-  private
-
   def trans_key(input)
     output = ""
     input.chars.map do |val|
@@ -53,5 +67,7 @@ class RosettaStone
     end
     output
   end
+
+
 
 end
