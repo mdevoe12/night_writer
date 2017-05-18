@@ -1,5 +1,3 @@
-require 'pry'
-
 gem 'minitest', '~> 5.0'
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -58,6 +56,7 @@ class RosettaStoneTest < Minitest::Test
     rosettastone = RosettaStone.new
     actual       = rosettastone.slice_top("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0")
     expected     = ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.", "0"]
+
     assert_equal expected, actual
   end
 
@@ -65,12 +64,16 @@ class RosettaStoneTest < Minitest::Test
     rosettastone = RosettaStone.new
     actual = rosettastone.slice_mid("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0")
     expected = ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.", "0"]
+
+    assert_equal expected, actual
   end
 
   def test_slice_bottom
     rosettastone = RosettaStone.new
     actual = rosettastone.slice_bottom("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0")
     expected = ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.", "0"]
+
+    assert_equal expected, actual
   end
 
   def test_all_three_lines
@@ -89,8 +92,6 @@ class RosettaStoneTest < Minitest::Test
     assert_equal ["0.0.0.0.0."], top_line
     assert_equal ["00.00.0..0"], mid_line
     assert_equal ["....0.0.0."], bottom_line
-
-
     end
 
 end
