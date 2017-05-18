@@ -11,5 +11,5 @@ class NightWriter
 
 end
 
-nite = NightWriter.new
-nite.writer
+# nite = NightWriter.new
+# nite.writer

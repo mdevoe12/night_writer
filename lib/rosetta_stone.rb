@@ -4,14 +4,12 @@ require_relative 'file_reader'
 
 class RosettaStone
   attr_reader :reader
-  attr_accessor :top_line, :middle_line, :bottom_line
+  attr_accessor :top_line, :mid_line, :bottom_line
 
   def initialize
-
+   @count = 0
    @reader = FileReader.new.reader
-   @top_line = ""
-   @middle_line = ""
-   @bottom_line = ""
+
 
    @top = {"abehkloruvz1258" => "0.",
              "cdfgmnpqxy3467" => "00",
@@ -39,19 +37,17 @@ class RosettaStone
 
   def top(input)
     @dict = @top
-    @top_line << trans_key(input)
-    binding.pry
-
+    trans_key(input)
   end
 
   def mid(input)
     @dict = @mid
-    @middle_line << trans_key(input)
+    trans_key(input)
   end
 
   def bottom(input)
     @dict = @bottom
-    @bottom_line << trans_key(input)
+    trans_key(input)
   end
 
   def trans_key(input)
@@ -65,16 +61,24 @@ class RosettaStone
         end
       end
     end
-    output.scan(/.{1,80}/).join(" ")#instaed of of returning output we return
-    #sorting method
+    output
   end
 
-  # sorting method(input)
-  # map through sliced array of the chars input
-  # shovel into the empty instance vairable strings
-  #top_line << empty array
-  # end
+  def slice_top(input)
+    top_line = slice_eighty(input)
+  end
 
+  def slice_mid(input)
+    mid_line = slice_eighty(input)
+  end
 
+  def slice_bottom(input)
+    bottom_line = slice_eighty(input)
+  end
 
+  def slice_eighty(input)
+    input.chars.each_slice(80).map do |character|
+      character.join
+    end
+  end
 end
