@@ -1,8 +1,3 @@
-require 'pry'
-
-require_relative 'rosetta_stone'
-
-
 class FileReader
 
   def reader

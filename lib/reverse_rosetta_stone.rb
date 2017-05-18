@@ -1,31 +1,22 @@
-require 'pry'
-
 require_relative 'file_reader'
+require_relative 'dictionary'
 
 class ReverseRosettaStone
 
-  attr_reader :top_val, :mid_val, :bottom_val
+  attr_reader :top_val,
+              :mid_val,
+              :bottom_val
 
 
   def initialize
-    @top_val = ""
-    @mid_val = ""
+    @top_val    = ""
+    @mid_val    = ""
     @bottom_val = ""
-    @reader = FileReader.new.reader
-    @top = {"abehkloruvz1258" => "0.",
-               "cdfgmnpqxy3467" => "00",
-               "ijstw#09" => ".0",
-               "',-.?! " => ".."}
-
-    @mid = {"bfilpsv,?269" => "0.",
-               "ghjqrtw!." => "00",
-               "denoyz#45" => ".0",
-               "ackmux'- " => ".."}
-
-    @bottom = {"klmnopqrst!'" => "0.",
-                 "uvxyz-?#" => "00",
-                 "w." => ".0",
-                 "abcdefghij,0123456789 " => ".."}
+    @reader     = FileReader.new.reader
+    @dictionary = Dictionary.new
+    @top        = @dictionary.top
+    @mid        = @dictionary.mid
+    @bottom     = @dictionary.bottom
 
   end
 
@@ -34,7 +25,6 @@ class ReverseRosettaStone
     input.length.times do
       input.chars.each_slice(2).map do |slice|
         if slice == @dict.keys[0]
-          binding.pry
           @top_val = @top_val + @dict.values[0]
         elsif slice == @dict.keys[1]
           @top_val = @top_val + @dict.values[1]
@@ -86,15 +76,11 @@ class ReverseRosettaStone
 
   def combine
     char = "#{@top_val} + #{@mid_val} + #{@bottom_val}"
-    # char.slice_braille
-    binding.pry
   end
-
 
 
   def slice_braille(input)
     duplicate = input.chars.select{|char| val.count(char) > 1}
     duplicate.uniq
   end
-
 end

@@ -88,7 +88,6 @@ class RosettaStoneTest < Minitest::Test
     mid_line = rosettastone.slice_top(text_mid)
     bottom_line = rosettastone.slice_top(text_bottom)
 
-
     assert_equal ["0.0.0.0.0."], top_line
     assert_equal ["00.00.0..0"], mid_line
     assert_equal ["....0.0.0."], bottom_line
